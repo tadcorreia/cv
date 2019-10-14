@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Benny's | Orçamentos e Faturação</title>
+    <title>Jumbotron Template for Bootstrap</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
     <!-- Bootstrap core CSS -->
@@ -36,6 +36,7 @@
           <p>
             <label>Tunning</label>
                     <select name="" class="form-control"  onchange="myFunction(event); calculate();">
+                            <option>-- Selecione um valor --</option>
                             <option value="2500">0 - 50.000€</option>
                             <option value="3000">50.000 - 100.000€</option>
                             <option value="3500">100.000 - 150.000€</option>
@@ -57,6 +58,7 @@
             <p>
                <label>Cosmética</label>
                     <select name="" class="form-control"  onchange="myFunctionCosmeticos(event); calculate();">
+                            <option>-- Selecione um valor --</option>
                             <option value="800">0 - 50.000€</option>
                             <option value="1000">50.000 - 100.000€</option>
                             <option value="1500">100.000 - 150.000€</option>
@@ -112,6 +114,18 @@
                     <label>Valor a Pagar</label>
                     <input id="resultTotal" class="form-control" readonly/>
             </p>
+            <p>
+                <form action="invoice.html" method="GET">
+                    <input type="hidden" name="unityTunning" id="unityTunning" />
+                    <input type="hidden" name="quantityTunning" id="quantityTunning" />
+                    <input type="hidden" name="totalTunning" id="totalTunning" />
+                    <input type="hidden" name="unityCosmetics" id="unityCosmetics" />
+                    <input type="hidden" name="quantityCosmetics" id="quantityCosmetics" />
+                    <input type="hidden" name="totalCosmetics" id="totalCosmetics" />
+                    <input type="hidden" name="passResultTotal" id="passResultTotal" />
+                    <input class="text-right" type="submit" value="Send data">
+                  </form>
+            </p>
         </div>
       </div>
 
@@ -126,6 +140,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
     <script>
             function myFunction(e) {
                 document.getElementById("box1").value = e.target.value;  
@@ -136,21 +151,30 @@
           
             function calculate() {
                 var myBox1 = document.getElementById('box1').value; 
+                    document.getElementById('unityTunning').value = myBox1;
                 var myBox2 = document.getElementById('box2').value;
+                    document.getElementById('quantityTunning').value = myBox2;
+
                 var result = document.getElementById('result');
                 var myResult = myBox1 * myBox2;
                     document.getElementById('result').value = myResult;
-    
+                    document.getElementById('totalTunning').value = myResult;
+
                 var box1Cosmetica = document.getElementById("box1Cosmetica").value;
+                    document.getElementById('unityCosmetics').value = box1Cosmetica;
                 var box2Cosmetica = document.getElementById("box2Cosmetica").value;
+                    document.getElementById('quantityCosmetics').value = box2Cosmetica;
+
                 var resultCosmeticos = document.getElementById("resultCosmeticos");
                 var myResultCosmeticos= box1Cosmetica * box2Cosmetica;
                     document.getElementById('resultCosmeticos').value=myResultCosmeticos;
+                    document.getElementById('totalCosmetics').value=myResultCosmeticos;
     
                 var valorTunning = document.getElementById("result").value;
                 var valorCosmetica = document.getElementById('resultCosmeticos').value;
                 var somaTotal= Number(valorTunning) + Number(valorCosmetica);
                     document.getElementById('resultTotal').value=somaTotal + " €";
+                    document.getElementById('passResultTotal').value=somaTotal;
               }
           </script>
 
