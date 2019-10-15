@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Benny's | Billing System</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
     <!-- Bootstrap core CSS -->
@@ -31,6 +31,19 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
+        <div class="col-md-6">
+          <label>Nome do cliente</label>
+         <p><input type="text" class="form-control" id="clientName" placeholder="Insria nome de cliente"></p>
+         <label>NIF</label>
+         <p><input type="text" class="form-control" id="nif" aria-describedby="nomecliente" placeholder="NIF" readonly></p>
+        </div>
+        <div class="col-md-6">
+asdasd
+        </div>
+        
+        <hr>
+        <hr>
+
         <div class="col-md-3">
           <h4>Valor</h4>
           <p>
@@ -97,7 +110,7 @@
            </p>
            <p>
               <label>Preço por peça - Cosmética</label>
-              <input id="box1Cosmetica" type="text" class="form-control" oninput="calculate();" readonly/>
+              <input id="box1Cosmetica" type="text" class="form-control" oninput="calculate();"  />
           </p>
        </div>
         <div class="col-md-3">
@@ -123,11 +136,14 @@
                     <input type="hidden" name="quantityCosmetics" id="quantityCosmetics" />
                     <input type="hidden" name="totalCosmetics" id="totalCosmetics" />
                     <input type="hidden" name="passResultTotal" id="passResultTotal" />
-                    <input class="text-right" type="submit" value="Send data">
+                    <input type="hidden" name="clientName" id="clientNameFatura" />
+                    <input class="btn btn-success" type="submit" value="Passar Fatura!">
                   </form>
             </p>
         </div>
+        
       </div>
+      
 
       <hr>
 
@@ -155,6 +171,10 @@
                 var myBox2 = document.getElementById('box2').value;
                     document.getElementById('quantityTunning').value = myBox2;
 
+                var clientName = document.getElementById('clientName').value;
+                    document.getElementById('clientNameFatura').value = clientName;
+
+
                 var result = document.getElementById('result');
                 var myResult = myBox1 * myBox2;
                     document.getElementById('result').value = myResult;
@@ -169,12 +189,15 @@
                 var myResultCosmeticos= box1Cosmetica * box2Cosmetica;
                     document.getElementById('resultCosmeticos').value=myResultCosmeticos;
                     document.getElementById('totalCosmetics').value=myResultCosmeticos;
+
     
                 var valorTunning = document.getElementById("result").value;
                 var valorCosmetica = document.getElementById('resultCosmeticos').value;
                 var somaTotal= Number(valorTunning) + Number(valorCosmetica);
                     document.getElementById('resultTotal').value=somaTotal + " €";
                     document.getElementById('passResultTotal').value=somaTotal;
+
+                    clientName
               }
           </script>
 

@@ -16,7 +16,7 @@
 
   </head>
 
-  <body>
+  <body onload="toDateString()">
 
     <div class="container">
       <!-- Example row of columns -->
@@ -30,8 +30,8 @@
                                 </div>
         
                                 <div class="col-md-6 text-right">
-                                    <p class="font-weight-bold mb-1">Invoice #550</p>
-                                    <p class="text-muted">Due to: 4 Dec, 2019</p>
+                                    <p class="font-weight-bold mb-1" id="numeroFatura">Invoice #550</p>
+                                    <p class="text-muted" id="data"></p>
                                 </div>
                             </div>
         
@@ -39,15 +39,15 @@
         
                             <div class="row pb-5 p-5">
                                 <div class="col-md-6">
-                                    <p class="font-weight-bold mb-4">Client Information</p>
-                                    <p class="mb-1">John Doe, Mrs Emma Downson</p>
-                                    <p>Acme Inc</p>
-                                    <p class="mb-1">Berlin, Germany</p>
-                                    <p class="mb-1">6781 45P</p>
+                                    <p class="font-weight-bold mb-4">Informação do Cliente</p>
+                                    <p class="mb-1" id="clientName"></p>
+                                    <p>Rua da Pichelheira</p>
+                                    <p class="mb-1">2568-896 PIX</p>
+                                    <p class="mb-1">Liberty City</p>
                                 </div>
         
                                 <div class="col-md-6 text-right">
-                                    <p class="font-weight-bold mb-4">Payment Details</p>
+                                    <p class="font-weight-bold mb-4">Detalhes Pagamento</p>
                                     <p class="mb-1"><span class="text-muted">VAT: </span> 1425782</p>
                                     <p class="mb-1"><span class="text-muted">VAT ID: </span> 10253642</p>
                                     <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
@@ -62,9 +62,9 @@
                                             <tr>
                                                 <th class="border-0 text-uppercase small font-weight-bold">ID</th>
                                                 <th class="border-0 text-uppercase small font-weight-bold">Item</th>
-                                                <th class="border-0 text-uppercase small font-weight-bold">Description</th>
-                                                <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                                <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
+                                                <th class="border-0 text-uppercase small font-weight-bold">Descrição</th>
+                                                <th class="border-0 text-uppercase small font-weight-bold">Quantidade</th>
+                                                <th class="border-0 text-uppercase small font-weight-bold">Custo unitário</th>
                                                 <th class="border-0 text-uppercase small font-weight-bold">Total</th>
                                             </tr>
                                         </thead>
@@ -73,17 +73,17 @@
                                                 <td>1</td>
                                                 <td>Tunning</td>
                                                 <td>Abrange todas as peças</td>
-                                                <td id="quantityTunning"><span id="pass"></span></td>
-                                                <td id="priceUnityTunning"><span id="log" ></span></td>
-                                                <td id="totalTunning"><span id="log1"></span></td>
+                                                <td id="quantityTunning"></td>
+                                                <td id="priceUnityTunning"></td>
+                                                <td id="totalTunning"></td>
                                             </tr>
                                             <tr>
-                                                <td>1</td>
+                                                <td>2</td>
                                                 <td>Cosmética</td>
                                                 <td>Abrange todas as alterações</td>
-                                                <td id="quantityCosmetic">234</td>
-                                                <td id="priceUnityCosmetic">$6356</td>
-                                                <td id="totalCosmetic">$23423</td>
+                                                <td id="quantityCosmetics"></td>
+                                                <td id="unityCosmetics"></td>
+                                                <td id="totalCosmetics"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -92,8 +92,8 @@
         
                             <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                                     <div class="py-3 px-5 text-right">
-                                    <div class="mb-2">Grand Total</div>
-                                    <div class="h2 font-weight-light" id="priceToPay">$234,234</div>
+                                    <div class="mb-2">A pagar!</div>
+                                    <div class="h2 font-weight-light" id="priceToPay"><span id="passResultTotal"></span></div>
                                 </div>
                                 <!--
                                 <div class="py-3 px-5 text-right">
@@ -124,26 +124,44 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
     <script language="JavaScript">
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('myParam');
 
-            function addComment()
-            {
-                var parameters = location.search.substring(1).split("&");
-        
-                var temp = parameters[0].split("=");
-                l = unescape(temp[1]);
-        
-                temp = parameters[1].split("=");
-                c = unescape(temp[1]);
-                d = unescape(temp[2]);
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
 
-        
-                document.getElementById("log").innerHTML = l;
-                document.getElementById("pass").innerHTML = c;
-                document.getElementById("log1").innerHTML = d;
-            }
-        addComment();
-        
-        </script>
+        var clientName = getParameterByName('clientName'); 
+        var unityTunning = getParameterByName('unityTunning'); 
+        var quantityTunning = getParameterByName('quantityTunning'); 
+        var totalTunning = getParameterByName('totalTunning'); 
+        var unityCosmetics = getParameterByName('unityCosmetics'); 
+        var quantityCosmetics = getParameterByName('quantityCosmetics'); 
+        var totalCosmetics = getParameterByName('totalCosmetics'); 
+        var passResultTotal = getParameterByName('passResultTotal'); 
+
+        document.getElementById("clientName").innerHTML = clientName;
+        document.getElementById("priceUnityTunning").innerHTML = unityTunning;
+        document.getElementById("quantityTunning").innerHTML = quantityTunning;
+        document.getElementById("totalTunning").innerHTML = totalTunning + '€';
+        document.getElementById("unityCosmetics").innerHTML = unityCosmetics;
+        document.getElementById("quantityCosmetics").innerHTML = quantityCosmetics;
+        document.getElementById("totalCosmetics").innerHTML = totalCosmetics + '€';
+        document.getElementById("passResultTotal").innerHTML = passResultTotal+ '€';
+
+        function toDateString() {
+            var data = new Date();
+            var alteraData = data.toDateString();
+        document.getElementById("data").innerHTML = alteraData;
+}
+
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
