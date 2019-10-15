@@ -30,7 +30,7 @@
                                 </div>
         
                                 <div class="col-md-6 text-right">
-                                    <p class="font-weight-bold mb-1" id="numeroFatura">Invoice #550</p>
+                                    <p class="font-weight-bold mb-1" id="numeroFatura"></p>
                                     <p class="text-muted" id="data"></p>
                                 </div>
                             </div>
@@ -40,18 +40,16 @@
                             <div class="row pb-5 p-5">
                                 <div class="col-md-6">
                                     <p class="font-weight-bold mb-4">Informação do Cliente</p>
-                                    <p class="mb-1" id="clientName"></p>
-                                    <p>Rua da Pichelheira</p>
-                                    <p class="mb-1">2568-896 PIX</p>
+                                    <p class="mb-1"><span class="text-muted">Nome Cliente: </span> <span id="clientName"></span></p>
+                                    <p class="mb-1"><span class="text-muted">Morada: </span> Rua da Pichelheira 2568-896 PIX</p>
                                     <p class="mb-1">Liberty City</p>
                                 </div>
         
                                 <div class="col-md-6 text-right">
                                     <p class="font-weight-bold mb-4">Detalhes Pagamento</p>
-                                    <p class="mb-1"><span class="text-muted">VAT: </span> 1425782</p>
-                                    <p class="mb-1"><span class="text-muted">VAT ID: </span> 10253642</p>
-                                    <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
-                                    <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p>
+                                    <p class="mb-1"><span class="text-muted">NIF: </span> <span id="vat"></span></p>
+                                    <p class="mb-1"><span class="text-muted">Tipo Pagamento: </span> Dinheiro</p>
+                                    <p class="mb-1"><span class="text-muted">Nome: </span> <span id="clientNameDetail"></span></p>
                                 </div>
                             </div>
         
@@ -138,6 +136,7 @@
         }
 
         var clientName = getParameterByName('clientName'); 
+        var nif = getParameterByName('nif');
         var unityTunning = getParameterByName('unityTunning'); 
         var quantityTunning = getParameterByName('quantityTunning'); 
         var totalTunning = getParameterByName('totalTunning'); 
@@ -147,6 +146,8 @@
         var passResultTotal = getParameterByName('passResultTotal'); 
 
         document.getElementById("clientName").innerHTML = clientName;
+        document.getElementById("clientNameDetail").innerHTML = clientName;
+        document.getElementById('vat').innerHTML=nif;
         document.getElementById("priceUnityTunning").innerHTML = unityTunning;
         document.getElementById("quantityTunning").innerHTML = quantityTunning;
         document.getElementById("totalTunning").innerHTML = totalTunning + '€';
@@ -159,7 +160,11 @@
             var data = new Date();
             var alteraData = data.toDateString();
         document.getElementById("data").innerHTML = alteraData;
-}
+        }
+
+        var randomInvoice= Math.floor(Math.random() * 1000) + 1;
+            document.getElementById("numeroFatura").innerHTML = "Invoice #" + randomInvoice;
+
 
     </script>
 

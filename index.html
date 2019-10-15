@@ -35,7 +35,7 @@
           <label>Nome do cliente</label>
          <p><input type="text" class="form-control" id="clientName" placeholder="Insria nome de cliente"></p>
          <label>NIF</label>
-         <p><input type="text" class="form-control" id="nif" aria-describedby="nomecliente" placeholder="NIF" readonly></p>
+         <p><input type="text" class="form-control" id="nif" placeholder="NIF" readonly></p>
         </div>
         <div class="col-md-6">
 
@@ -137,6 +137,7 @@
                     <input type="hidden" name="totalCosmetics" id="totalCosmetics" />
                     <input type="hidden" name="passResultTotal" id="passResultTotal" />
                     <input type="hidden" name="clientName" id="clientNameFatura" />
+                    <input type="hidden" name="nif" id="passNIF" />
                     <input class="btn btn-success" type="submit" value="Passar Fatura!">
                   </form>
             </p>
@@ -174,6 +175,8 @@
                 var clientName = document.getElementById('clientName').value;
                     document.getElementById('clientNameFatura').value = clientName;
 
+                var nif = document.getElementById('nif').value;
+                    document.getElementById('passNIF').value=nif;
 
                 var result = document.getElementById('result');
                 var myResult = myBox1 * myBox2;
@@ -197,9 +200,12 @@
                     document.getElementById('resultTotal').value=somaTotal + " €";
                     document.getElementById('passResultTotal').value=somaTotal;
 
-                    clientName
               }
-          </script>
+
+              var randomNIF= Math.floor(Math.random() * 7000000) + 1;
+                  document.getElementById("nif").value ="21" + randomNIF;
+
+        </script>
 
 
 
