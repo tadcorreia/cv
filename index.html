@@ -2,15 +2,6 @@
 <!DOCTYPE html>
 <html lang="pt">
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150066218-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-150066218-1');
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -32,124 +23,205 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-3">Benny's</h1>
-        <p>Sistema de faturação.</p>
+        <img src="logo_1.png">
       </div>
     </div>
 
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-6">
-          <label>Nome do cliente</label>
-         <p><input type="text" class="form-control" id="clientName" placeholder="Insria nome de cliente"></p>
-         <label>NIF</label>
-         <p><input type="text" class="form-control" id="nif" placeholder="NIF" readonly></p>
+          <div class="col-md-6">
+            <div class="row">
+                <div class="col">
+                    <label>Kilómetros Percorridos</label>
+                    <input class="form-control"  id="kmPercorrido" value="0"  type="number" oninput="valorAssistencia();valorPagar()"/>
+                </div>
+                <div class="col">
+                    <label>Valor a Pagar</label>
+                    <input class="form-control"  id="passResultTotal" readonly="readonly" type="text" value="0"/>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            Kits
         </div>
+      </div>
+      
+      <hr>
+
+      <div class="row">
         <div class="col-md-6">
-
-        </div>
-        
-        <hr>
-        <hr>
-
-        <div class="col-md-3">
-          <h4>Valor</h4>
           <p>
-            <label>Tunning</label>
+            <label>Valor Carro</label>
                     <select name="" class="form-control"  onchange="myFunction(event); calculate();">
                             <option>-- Selecione um valor --</option>
-                            <option value="2500">0 - 50.000€</option>
-                            <option value="3000">50.000 - 100.000€</option>
-                            <option value="3500">100.000 - 150.000€</option>
-                            <option value="3800">150.000 - 200.000€</option>
-                            <option value="4000">200.000 - 300.000€</option>
-                            <option value="4250">300.000 - 400.000€</option>
-                            <option value="4599">400.000 - 500.000€</option>
-                            <option value="5000">500.000 - 600.000€</option>
-                            <option value="5500">600.000 - 700.000€</option>
-                            <option value="6000">700.000 - 800.000€</option>
-                            <option value="6500">800.000 - 900.000€</option>
-                            <option value="7000">900.000 - 1.000.000€</option>
-                            <option value="8000">1.000.000 - 2.000.000€</option>
-                            <option value="8500">2.000.000 - 3.000.000€</option>
-                            <option value="9000">3.000.000 - 4.000.000€</option>
-                            <option value="10000">4.000.000 - 5.000.000€</option>
+                            <option value="1">0 - 50.000€</option>
+                            <option value="2">50.000 - 100.000€</option>
+                            <option value="3">100.000 - 200.000€</option>
+                            <option value="4">200.000 - 500.000€</option>
+                            <option value="5">500.000 - 750.000€</option>
+                            <option value="6">750.000 - 1.000.000€</option>
+                            <option value="7">1.000.000€ - 2.000.000€</option>
+                            <option value="8">2.000.000€</option>
+                            <option value="9">Exclusivos</option>
                     </select>
             </p>
-            <p>
-               <label>Cosmética</label>
-                    <select name="" class="form-control"  onchange="myFunctionCosmeticos(event); calculate();">
-                            <option>-- Selecione um valor --</option>
-                            <option value="800">0 - 50.000€</option>
-                            <option value="1000">50.000 - 100.000€</option>
-                            <option value="1500">100.000 - 150.000€</option>
-                            <option value="1800">150.000 - 200.000€</option>
-                            <option value="2000">200.000 - 300.000€</option>
-                            <option value="2250">300.000 - 400.000€</option>
-                            <option value="2500">400.000 - 500.000€</option>
-                            <option value="3000">500.000 - 600.000€</option>
-                            <option value="3500">600.000 - 700.000€</option>
-                            <option value="4000">700.000 - 800.000€</option>
-                            <option value="4500">800.000 - 900.000€</option>
-                            <option value="5000">900.000 - 1.000.000€</option>
-                            <option value="6500">1.000.000 - 2.000.000€</option>
-                            <option value="6500">2.000.000 - 3.000.000€</option>
-                            <option value="7000">3.000.000 - 4.000.000€</option>
-                            <option value="8000">4.000.000 - 5.000.000€</option>
-                    </select> 
-            </p>      
-        </div>
-        <div class="col-md-3">
-            <h4>Quantidade</h4>
-                  <p>
-                          <label>Quantidade - Tunning</label>
-                          <input id="box2" type="number" class="form-control" oninput="calculate();" />
-                  </p>
-                  <p>
-                          <label>Quantidade - Cosmética</label>
-                          <input id="box2Cosmetica" type="number" class="form-control" oninput="calculate();" />
-                  </p>
-        </div>
-        <div class="col-md-3">
-          <h4>Preço</h4>
-          <p>
-              <label>Preço por peça - Tunning</label>
-              <input id="box1" type="text" class="form-control" oninput="calculate();" readonly/>
-           </p>
-           <p>
-              <label>Preço por peça - Cosmética</label>
-              <input id="box1Cosmetica" type="text" class="form-control" oninput="calculate();" readonly />
-          </p>
-       </div>
-        <div class="col-md-3">
-            <h4>Total</h4>
-            <p>
-                    <label>Valor Total - Tunning</label>
-                    <input id="result" class="form-control" readonly/>
-            </p>
-            <p>
-                    <label>Valor Total - Cosmética</label>
-                    <input id="resultCosmeticos" class="form-control" readonly/>
-            </p>
-            <p>
+          <div class="col-md-12 checkboxclass" id="mostraValorSelecionadoCarro">
+             <p> 
+                <input id="box1" type="hidden" class="form-control" oninput="calculate();" readonly/>
+             </p>
+
+          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+                <div class="col">
+                    <label>Total Tunning</label>
+                    <input class="form-control"  value="0" id="totaltunning" readonly="readonly" type="text" name="total" />
+                </div>
+                <div class="col">
+                    <label>Total Cosmética</label>
+                    <input class="form-control"  value="0" id="totalCosmetica" readonly="readonly" type="text" name="totalCosmetic" />
+                </div>
+                <div class="col">
                     <label>Valor a Pagar</label>
-                    <input id="resultTotal" class="form-control" readonly/>
-            </p>
-            <p>
-                <form action="invoice.html" method="GET">
-                    <input type="hidden" name="unityTunning" id="unityTunning" />
-                    <input type="hidden" name="quantityTunning" id="quantityTunning" />
-                    <input type="hidden" name="totalTunning" id="totalTunning" />
-                    <input type="hidden" name="unityCosmetics" id="unityCosmetics" />
-                    <input type="hidden" name="quantityCosmetics" id="quantityCosmetics" />
-                    <input type="hidden" name="totalCosmetics" id="totalCosmetics" />
-                    <input type="hidden" name="passResultTotal" id="passResultTotal" />
-                    <input type="hidden" name="clientName" id="clientNameFatura" />
-                    <input type="hidden" name="nif" id="passNIF" />
-                    <input class="btn btn-success" type="submit" value="Passar Fatura!">
-                  </form>
-            </p>
+                    <input class="form-control"  value="0" id="resultado" readonly="readonly" type="text" name="totalPagantes" />
+                </div>
+            </div>
+        </div>
+      </div> 
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card checkboxclass" id="mostraValorSelecionadoCarro" style="margin:0px 0">
+                        <!-- Default panel contents -->
+                        <div class="card-header">Tunagem</div>
+                    
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                              <b>Motor</b>
+                                <label class="switch ">
+                                    <input name="product" type="checkbox" id="valorMotor" class="success iput" autocomplete="off" onclick="totalIt();valorPagar()"> 
+                                    <span class="slider"></span>
+                                </label>
+                                <p>Preço: <span id="motorSpan"></span></p>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Travões</b>
+                                 <label class="switch ">
+                                     <input name="product" type="checkbox" id="valorTravoes" class="success iput" autocomplete="off" onclick="totalIt();valorPagar()"> 
+                                     <span class="slider"></span>
+                                 </label>
+                                 <p>Preço: <span id="travoesSpan"></span></p>
+                             </li>
+                             <li class="list-group-item">
+                              <b>Turbo</b>
+                                 <label class="switch ">
+                                     <input name="product" type="checkbox" id="valorTurbo" class="success iput" autocomplete="off" onclick="totalIt();valorPagar()"> 
+                                     <span class="slider"></span>
+                                 </label>
+                                 <p>Preço: <span id="turboSpan"></span></p>
+                             </li>
+                             <li class="list-group-item">
+                              <b>Suspensão</b>
+                                 <label class="switch ">
+                                     <input name="product" type="checkbox" id="valorSuspensao" class="success iput" autocomplete="off" onclick="totalIt();valorPagar()"> 
+                                     <span class="slider"></span>
+                                 </label>
+                                 <p>Preço: <span id="suspensaoSpan"></span></p>
+                             </li>
+                             <li class="list-group-item">
+                              <b>Transmissão</b>
+                                 <label class="switch ">
+                                     <input name="product" type="checkbox" id="valorTransmissao" class="success iput" autocomplete="off" onclick="totalIt();valorPagar()"> 
+                                     <span class="slider"></span>
+                                 </label>
+                                 <p>Preço: <span id="transmissaoSpan"></span></p>
+                             </li>
+                             <li class="list-group-item">
+                              <b>Pack Total</b>
+                                 <label class="switch ">
+                                     <input name="product" type="checkbox" id="valorPack" class="success iput" autocomplete="off" onclick="totalIt();valorPagar()"> 
+                                     <span class="slider"></span>
+                                 </label>
+                                 <p>Preço: <span id="packSpan"></span></p>
+                             </li>
+                             <li class="list-group-item">
+                                <b>Blindagem</b>
+                                 <label class="switch ">
+                                     <input name="product" type="checkbox" id="valorBlindagem" class="success iput" autocomplete="off" onclick="totalIt();valorPagar()"> 
+                                     <span class="slider"></span>
+                                 </label>
+                                 <p>Preço: <span id="blindagemSpan"></span></p>
+                             </li>
+                        </ul>
+                </div> 
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="card checkboxclass" id="mostraValorSelecionadoCarro">
+                    <div class="card-header">Cosmética</div>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <b>Chaparia</b>
+                            <input class="form-control"  id="valorChaparia" value="0"  type="hidden" oninput="valorChaparia();valorPagar()"/>
+                            <input  class="form-control"  id="valorQuantChaparia" value="0"   oninput="totalItCosmetic();valorChaparia();valorPagar()"/>
+                             <p>Preço Unidade: <span id="chapariaSpan"></span></p>
+                             <p><input class="form-control"  id="passResultTotalChaparia" readonly="readonly" type="hidden" value="0"/></p>
+                         </li>
+                        <li class="list-group-item">
+                           <b>Pintura Principal</b>
+                            <label class="switch">
+                                <input name="productCosmetic" type="checkbox" id="valorPinturaPrincipal" class="success iput" autocomplete="off" onclick="totalItCosmetic();valorPagar()"> 
+                                <span class="slider"></span>
+                            </label>
+                            <p>Preço: <span id="pinturaPrimSpan"></span></p>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Pintura Secundária</b>
+                             <label class="switch ">
+                                 <input name="productCosmetic" type="checkbox" id="valorPinturaSecundaria" class="success iput" autocomplete="off" onclick="totalItCosmetic();valorPagar()"> 
+                                 <span class="slider"></span>
+                             </label>
+                             <p>Preço: <span id="pinturaSecSpan"></span></p>
+                         </li>
+                         <li class="list-group-item">
+                            <b>Pintura Perolado</b>
+                             <label class="switch ">
+                                 <input name="productCosmetic" type="checkbox" id="valorPinturaPeroaldo" class="success iput" autocomplete="off" onclick="totalItCosmetic();valorPagar()"> 
+                                 <span class="slider"></span>
+                             </label>
+                             <p>Preço: <span id="pinturaPerSpan"></span></p>
+                         </li>
+                         <li class="list-group-item">
+                            <b>Rodas</b>
+                             <label class="switch ">
+                                 <input name="productCosmetic" type="checkbox" id="valorRodas" class="success iput" autocomplete="off" onclick="totalItCosmetic();valorPagar()"> 
+                                 <span class="slider"></span>
+                             </label>
+                             <p>Preço: <span id="rodasSpan"></span></p>
+                         </li>
+                         <li class="list-group-item">
+                            <b>Cor das rodas</b>
+                             <label class="switch ">
+                                 <input name="productCosmetic" type="checkbox" id="valorCorRodas" class="success iput" autocomplete="off" onclick="totalItCosmetic();valorPagar()"> 
+                                 <span class="slider"></span>
+                             </label>
+                             <p>Preço: <span id="corRodasSpan"></span></p>
+                         </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        
+        
+
         </div>
         
       </div>
@@ -169,50 +241,250 @@
 
     <script>
             function myFunction(e) {
-                document.getElementById("box1").value = e.target.value;  
+
+                // CARROS DE 0 A 50K
+                var motorCarro1=10000;
+                var travoesCarro1=5000;
+                var turboCarro1=10000;
+                var suspensaoCarro1=5000;
+                var transmissaoCarro1=12000;
+                var packCarro1=42000;
+                var blindagemCarro1=40000;
+
+                // CARROS DE 51 A 100K
+                var motorCarro2=25000;
+                var travoesCarro2=10000;
+                var turboCarro2=17500;
+                var suspensaoCarro2=7500;
+                var transmissaoCarro2=20000;
+                var packCarro2=80000;
+                var blindagemCarro2=65000;
+
+                // CARROS DE 101 A 200K
+                var motorCarro3=50000;
+                var travoesCarro3=25000;
+                var turboCarro3=22500;
+                var suspensaoCarro3=12500;
+                var transmissaoCarro3=27500;
+                var packCarro3=137500;
+                var blindagemCarro3=115000;
+
+                // CARROS DE 201 A 500K
+                var motorCarro4=100000;
+                var travoesCarro4=35000;
+                var turboCarro4=55000;
+                var suspensaoCarro4=22500;
+                var transmissaoCarro4=40000;
+                var packCarro4=252500;
+                var blindagemCarro4=200000;
+
+                // CARROS DE 501 A 750K
+                var motorCarro5=150000;
+                var travoesCarro5=55000;
+                var turboCarro5=80000;
+                var suspensaoCarro5=30000;
+                var transmissaoCarro5=55500;
+                var packCarro5=370500;
+                var blindagemCarro5=32000;
+
+                // CARROS DE 751K a 1M
+                var motorCarro6=200000;
+                var travoesCarro6=62500;
+                var turboCarro6=925000;
+                var suspensaoCarro6=42500;
+                var transmissaoCarro6=68500;
+                var packCarro6=373500;
+                var blindagemCarro6=340000;
+
+                // CARROS DE 1M a 2 M
+                var motorCarro7=225000;
+                var travoesCarro7=75000;
+                var turboCarro7=100000;
+                var suspensaoCarro7=55000;
+                var transmissaoCarro7=75000;
+                var packCarro7=530000;
+                var blindagemCarro7=400000;
+
+                // CARROS DE 2M +
+                var motorCarro8=250000;
+                var travoesCarro8=87500;
+                var turboCarro8=125000;
+                var suspensaoCarro8=80000;
+                var transmissaoCarro8=90000;
+                var packCarro8=632500;
+                var blindagemCarro8=550000;
+
+                // CARROS EXCLUSIVOS
+                var motorCarro9=300000;
+                var travoesCarro9=100000;
+                var turboCarro9=150000;
+                var suspensaoCarro9=100000;
+                var transmissaoCarro9=130000;
+                var packCarro9=780000;
+                var blindagemCarro9=600000;
+
+
+                // COSMETICA
+                var pinturaPrincipal=3500;
+                var pinturaSecundaria=3000;
+                var pinturaPerolado=2000;
+                var rodas=10000;
+                var corRodas= 500;
+                var chaparia=3500; 
+
+                // ASSISTENCIA
+                var assistencia=3500;
+                var kmAssistencia= 1000;
+
+
+                document.getElementById("box1").value = e.target.value;
+
+                var valorCarro = document.getElementById('box1').value;
+                      if (valorCarro == 1){
+                        document.getElementById("mostraValorSelecionadoCarro").style.display = "block"; //isto vai ser para remover, mostra apenas se o valor está correto
+                        //PEÇAS
+                        var valorMotor = document.getElementById("valorMotor").value = motorCarro1;
+                          document.getElementById("motorSpan").innerHTML = motorCarro1;
+                        var valorTravoes = document.getElementById("valorTravoes").value = travoesCarro1;
+                          document.getElementById("travoesSpan").innerHTML = travoesCarro1;
+                        var valorTurbo= document.getElementById("valorTurbo").value = turboCarro1;
+                          document.getElementById("turboSpan").innerHTML = turboCarro1;
+                        var valorSuspensao = document.getElementById("valorSuspensao").value = suspensaoCarro1;
+                          document.getElementById("suspensaoSpan").innerHTML = suspensaoCarro1;
+                        var valorTransmissao = document.getElementById("valorTransmissao").value = transmissaoCarro1;
+                          document.getElementById("transmissaoSpan").innerHTML = transmissaoCarro1;
+                        var valorPack = document.getElementById("valorPack").value = packCarro1;
+                          document.getElementById("packSpan").innerHTML = packCarro1;
+                        var valorBlindagem = document.getElementById("valorBlindagem").value = blindagemCarro1;
+                         document.getElementById("blindagemSpan").innerHTML = blindagemCarro1;
+                        //COSMETICA
+                        var valorPinturaPrincipal = document.getElementById("valorPinturaPrincipal").value = pinturaPrincipal;
+                        document.getElementById("pinturaPrimSpan").innerHTML = pinturaPrincipal;
+                        var valorPinturaSecundaria = document.getElementById("valorPinturaSecundaria").value = pinturaSecundaria;
+                        document.getElementById("pinturaSecSpan").innerHTML = pinturaSecundaria;
+                        var valorPinturaPeroaldo= document.getElementById("valorPinturaPeroaldo").value = pinturaPerolado;
+                        document.getElementById("pinturaPerSpan").innerHTML = pinturaPerolado;
+                        var valorRodas = document.getElementById("valorRodas").value = rodas;
+                        document.getElementById("rodasSpan").innerHTML = rodas;
+                        var valorCorRodas = document.getElementById("valorCorRodas").value = corRodas;
+                        document.getElementById("corRodasSpan").innerHTML = corRodas;
+                        var valorChaparia = document.getElementById("valorChaparia").value = chaparia;
+                        document.getElementById("chapariaSpan").innerHTML = chaparia;
+
+                      } else if (valorCarro == 2){
+                        //PEÇAS
+                        var valorMotor = document.getElementById("valorMotor").value = motorCarro2;
+                          document.getElementById("motorSpan").innerHTML = motorCarro2;
+                        var valorTravoes = document.getElementById("valorTravoes").value = travoesCarro2;
+                          document.getElementById("travoesSpan").innerHTML = travoesCarro2;
+                        var valorTurbo= document.getElementById("valorTurbo").value = turboCarro2;
+                          document.getElementById("turboSpan").innerHTML = turboCarro2;
+                        var valorSuspensao = document.getElementById("valorSuspensao").value = suspensaoCarro2;
+                          document.getElementById("suspensaoSpan").innerHTML = suspensaoCarro2;
+                        var valorTransmissao = document.getElementById("valorTransmissao").value = transmissaoCarro2;
+                          document.getElementById("transmissaoSpan").innerHTML = transmissaoCarro2;
+                        var valorPack = document.getElementById("valorPack").value = packCarro2;
+                          document.getElementById("packSpan").innerHTML = packCarro2;
+                        var valorBlindagem = document.getElementById("valorBlindagem").value = blindagemCarro2;
+                         document.getElementById("blindagemSpan").innerHTML = blindagemCarro2;
+                        //COSMETICA
+                        var valorPinturaPrincipal = document.getElementById("valorPinturaPrincipal").value = pinturaPrincipal;
+                        var valorPinturaSecundaria = document.getElementById("valorPinturaSecundaria").value = pinturaSecundaria;
+                        var valorPinturaPeroaldo= document.getElementById("valorPinturaPeroaldo").value = pinturaPerolado;
+                        var valorRodas = document.getElementById("valorRodas").value = rodas;
+                        var valorCorRodas = document.getElementById("valorCorRodas").value = corRodas;
+                        var valorChaparia = document.getElementById("valorChaparia").value = chaparia;
+                      } else if (valorCarro == 3){
+                        //PEÇAS
+                        var valorMotor = document.getElementById("valorMotor").value = motorCarro3;
+                          document.getElementById("motorSpan").innerHTML = motorCarro3;
+                        var valorTravoes = document.getElementById("valorTravoes").value = travoesCarro3;
+                          document.getElementById("travoesSpan").innerHTML = travoesCarro3;
+                        var valorTurbo= document.getElementById("valorTurbo").value = turboCarro3;
+                          document.getElementById("turboSpan").innerHTML = turboCarro3;
+                        var valorSuspensao = document.getElementById("valorSuspensao").value = suspensaoCarro3;
+                          document.getElementById("suspensaoSpan").innerHTML = suspensaoCarro3;
+                        var valorTransmissao = document.getElementById("valorTransmissao").value = transmissaoCarro3;
+                          document.getElementById("transmissaoSpan").innerHTML = transmissaoCarro3;
+                        var valorPack = document.getElementById("valorPack").value = packCarro3;
+                          document.getElementById("packSpan").innerHTML = packCarro3;
+                        var valorBlindagem = document.getElementById("valorBlindagem").value = blindagemCarro3;
+                          document.getElementById("blindagemSpan").innerHTML = blindagemCarro3;
+                        //COSMETICA
+                        var valorPinturaPrincipal = document.getElementById("valorPinturaPrincipal").value = pinturaPrincipal;
+                        var valorPinturaSecundaria = document.getElementById("valorPinturaSecundaria").value = pinturaSecundaria;
+                        var valorPinturaPeroaldo= document.getElementById("valorPinturaPeroaldo").value = pinturaPerolado;
+                        var valorRodas = document.getElementById("valorRodas").value = rodas;
+                        var valorCorRodas = document.getElementById("valorCorRodas").value = corRodas;
+                        var valorChaparia = document.getElementById("valorChaparia").value = chaparia;
+                      }
             }
-            function myFunctionCosmeticos(e) {
-                document.getElementById("box1Cosmetica").value = e.target.value;
+
+
+            function totalIt() {
+              var input = document.getElementsByName("product");
+              var total = 0;
+              for (var i = 0; i < input.length; i++) {
+                if (input[i].checked) {
+                  total += parseFloat(input[i].value);
+                }
+              }
+              document.getElementsByName("total")[0].value = total ;
             }
-          
-            function calculate() {
-                var myBox1 = document.getElementById('box1').value; 
-                    document.getElementById('unityTunning').value = myBox1;
-                var myBox2 = document.getElementById('box2').value;
-                    document.getElementById('quantityTunning').value = myBox2;
 
-                var clientName = document.getElementById('clientName').value;
-                    document.getElementById('clientNameFatura').value = clientName;
+            function totalItCosmetic() {
 
-                var nif = document.getElementById('nif').value;
-                    document.getElementById('passNIF').value=nif;
+                var chaparia=3500;
 
-                var result = document.getElementById('result');
-                var myResult = myBox1 * myBox2;
-                    document.getElementById('result').value = myResult;
-                    document.getElementById('totalTunning').value = myResult;
+                var valorQuantChaparia = parseInt(document.getElementById('valorQuantChaparia').value, 10);
+                var kmsPercorridosTotal = valorQuantChaparia * chaparia;
+                        document.getElementById('passResultTotalChaparia').value=kmsPercorridosTotal;
 
-                var box1Cosmetica = document.getElementById("box1Cosmetica").value;
-                    document.getElementById('unityCosmetics').value = box1Cosmetica;
-                var box2Cosmetica = document.getElementById("box2Cosmetica").value;
-                    document.getElementById('quantityCosmetics').value = box2Cosmetica;
+              var input = document.getElementsByName("productCosmetic");
+              var total = 0;
+              for (var i = 0; i < input.length; i++) {
+                if (input[i].checked) {
+                  total += parseFloat(input[i].value);
+                }
+              }
+              document.getElementsByName("totalCosmetic")[0].value = total + kmsPercorridosTotal;
+            }
 
-                var resultCosmeticos = document.getElementById("resultCosmeticos");
-                var myResultCosmeticos= box1Cosmetica * box2Cosmetica;
-                    document.getElementById('resultCosmeticos').value=myResultCosmeticos;
-                    document.getElementById('totalCosmetics').value=myResultCosmeticos;
+            function valorPagar(){
 
-    
-                var valorTunning = document.getElementById("result").value;
-                var valorCosmetica = document.getElementById('resultCosmeticos').value;
-                var somaTotal= Number(valorTunning) + Number(valorCosmetica);
-                    document.getElementById('resultTotal').value=somaTotal + " €";
+                var n1 = parseInt(document.getElementById('totaltunning').value, 10);
+                var n2 = parseInt(document.getElementById('totalCosmetica').value, 10);
+             //   var n3 = parseInt(document.getElementById('passResultTotal').value, 10); Adiciona o total da assistencia ao valor de tunning;
+                document.getElementById('resultado').value = n1 + n2;
+
+
+            }
+
+            function valorAssistencia(){
+
+                var assistencia=3500;
+                var kmAssistencia= 1000;
+
+                var valorTunning = assistencia;
+                var valorCosmetica = parseInt(document.getElementById('kmPercorrido').value, 10);
+                var kmsPercorridosTotal = valorCosmetica * kmAssistencia;
+
+                var somaTotal= valorTunning + kmsPercorridosTotal;
                     document.getElementById('passResultTotal').value=somaTotal;
 
-              }
+            }
 
-              var randomNIF= Math.floor(Math.random() * 7000000) + 1;
-                  document.getElementById("nif").value ="21" + randomNIF;
+            function valorChaparia(){
+
+                var chaparia=3500;
+
+                var valorQuantChaparia = parseInt(document.getElementById('valorQuantChaparia').value, 10);
+                var kmsPercorridosTotal = valorQuantChaparia * chaparia;
+                        document.getElementById('passResultTotalChaparia').value=kmsPercorridosTotal;
+
+                }
+
+
 
         </script>
 
@@ -226,3 +498,4 @@
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
+
